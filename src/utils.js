@@ -7,7 +7,6 @@ export function timer(callback, seconds) {
     if (seconds > 0) {
       seconds--;
       callback(seconds);
-      console.log(seconds);
     } else {
       clearInterval(timer);
     }
