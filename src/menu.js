@@ -26,10 +26,13 @@ export class ContextMenu extends Menu {
   }
 
   add(item) {
-    const $listItem = document.createElement('div');
-    $listItem.className = 'menu-item';
-    $listItem.textContent = item.text;
-    $listItem.addEventListener('click', item.action); 
+    const $listItem = document.createElement('li');
+    $listItem.innerHTML = item.toHTML();
+
+    $listItem.addEventListener('click', () => {
+        item.trigger(); 
+    });
+    
     this.el.appendChild($listItem);
   }
 }
