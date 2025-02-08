@@ -27,7 +27,7 @@ export class ClicksModule extends Module {
                 modalClick.editClick(0)
                 modalClick.close()
                 clearInterval(timer);
-                modalInfoClick.open(modalClick.countClicks, this.time)
+                modalInfoClick.open(modalClick.countClicks)
             }
         }, 1000)
     }

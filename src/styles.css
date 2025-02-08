@@ -171,6 +171,7 @@ body {
   font-size: 18px;
   text-align: center;
 }
+
 .timer-form__input {
   display: block;
   width: 350px;
@@ -218,9 +219,11 @@ body {
   position: absolute;
   transition: opacity 2s;
 }
+
 .circle {
   border-radius: 50%;
 }
+
 .triangle {
   width: 0;
   height: 0;
@@ -229,7 +232,7 @@ body {
   border-bottom: 100px solid transparent;
 }
 
-.message-container{
+.message-container {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -238,7 +241,7 @@ body {
   gap: 20px;
 }
 
-.message-block{
+.message-block {
   font-size: 20px;
   justify-content: center;
   align-items: center;
@@ -252,11 +255,11 @@ body {
   transition: background-color 0.5s, opacity 0.3s ease-in-out;
 }
 
-.message-block.fade-out{
-    opacity: 0;
+.message-block.fade-out {
+  opacity: 0;
 }
 
-.message-block:hover{
+.message-block:hover {
   background-color: rgb(3, 37, 67);
   cursor: pointer;
 }
@@ -368,4 +371,78 @@ body {
   padding: 9px 15px;
   background-color: red;
   color: white
+}
+
+
+/* ------------------------ */
+
+/* Сверху убрать лишнее и вставить это  */
+
+.notification-container {
+  position: absolute;
+  z-index: 2;
+  bottom: 25px;
+  right: 25px;
+  min-width: 300px;
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.notification-container-item {
+  z-index: 3;
+  bottom: 25px;
+  right: 25px;
+  min-width: 300px;
+  min-height: 100px;
+
+  background-color: rgba(77, 77, 77, 0.5);
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px 0 60px;
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.timer-container {
+  background-image: url(./img/timer.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+
+.message-container {
+  background-image: url(./img/message.png);
+}
+
+.notification-container-item:hover {
+  color: #fff;
+  background-color: #343434;
+}
+
+.timer-container:hover {
+  background-image: url(./img/timer-white.png);
+}
+
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.message-container:hover {
+  background-image: url(./img/message-white.png);
+}
+
+.notification-container-span {
+  position: relative;
+  font-size: 20px;
+  z-index: 4;
 }

@@ -69,61 +69,23 @@ export class ModalClick {
 
 
 export class ModalInfoClick {
-    constructor() {
-        this.initmodalInfoClick()
-    }
+    open(countClick) {
+        const $clickContainer = document.createElement('div')
+        $clickContainer.classList.add('click-container')
+        $clickContainer.classList.add('notification-container-item')
+        $clickContainer.classList.add(`click-container-${new Date().getTime()}`)
 
-    initmodalInfoClick() {
-        const $modalOverlay = document.createElement('div')
-        const $modalClickAnalyticsStatistics = document.createElement('div')
-        const $modalClickAnalyticsStatisticsContent = document.createElement('div')
-        const $modalClickAnalyticsStatisticsTitle = document.createElement('h2')
-        const $modalClickAnalyticsStatisticsTime = document.createElement('p')
-        const $modalClickAnalyticsStatisticsClick = document.createElement('p')
-        const $modalClose = document.createElement('button')
+        const $clickSpan = document.createElement('span')
+        $clickSpan.classList.add('click-span')
+        $clickSpan.classList.add('notification-container-span')
+        $clickSpan.classList.add(`click-span-${new Date().getTime()}`)
 
-        $modalOverlay.className = 'modal-overlay'
-        $modalClickAnalyticsStatistics.className = 'modal-click-analytics-statistics'
-        $modalClickAnalyticsStatisticsContent.className = 'modal-click-analytics-statistics-content'
-        $modalClickAnalyticsStatisticsTitle.className = 'modal-click-analytics-statistics-title'
-        $modalClickAnalyticsStatisticsTime.className = 'modal-click-analytics-statistics-time'
-        $modalClickAnalyticsStatisticsClick.className = 'modal-click-analytics-statistics-click'
-        $modalClose.className = 'modal-click-analytics-close'
-    
-    
-        $modalClickAnalyticsStatisticsTitle.textContent = 'Статистика кликов'
-        $modalClickAnalyticsStatisticsTime.textContent = ''
-        $modalClickAnalyticsStatisticsClick.textContent = ''
-        $modalClose.textContent = 'Закрыть'
+        $clickSpan.textContent = ''
 
-        $modalClickAnalyticsStatisticsContent.append($modalClickAnalyticsStatisticsTitle)
-        $modalClickAnalyticsStatisticsContent.append($modalClickAnalyticsStatisticsTime)
-        $modalClickAnalyticsStatisticsContent.append($modalClickAnalyticsStatisticsClick)
-    
-        $modalClickAnalyticsStatistics.append($modalClickAnalyticsStatisticsContent)
-        $modalClickAnalyticsStatistics.append($modalClose)
+        $clickContainer.append($clickSpan)
 
-        $modalOverlay.append($modalClickAnalyticsStatistics)
-
-        this.$modalOverlay = $modalOverlay
-        this.$modalClickAnalyticsStatistics = $modalClickAnalyticsStatistics
-        this.$modalClose = $modalClose
-        this.$modalClickAnalyticsStatisticsTime = $modalClickAnalyticsStatisticsTime
-        this.$modalClickAnalyticsStatisticsClick = $modalClickAnalyticsStatisticsClick
-
-        this.$modalClose.addEventListener('click', () => {
-            this.close()
-        })
-    }
-
-    open(countClick, time) {
-        const $body = document.querySelector('body')
-        $body.append(this.$modalOverlay)
-        this.$modalClickAnalyticsStatisticsTime.textContent = `Прошедшее время ${time} сек.`
-        this.$modalClickAnalyticsStatisticsClick.textContent = `Количество кликов ${countClick}`
-    }
-
-    close() {
-        this.$modalOverlay.remove()
+        const $notificationContainer = document.querySelector('.notification-container')
+        $notificationContainer.append($clickContainer)
+        $clickSpan.textContent = `Количество кликов ${countClick}`
     }
 }
