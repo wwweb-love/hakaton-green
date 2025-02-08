@@ -1,6 +1,9 @@
 import {Module} from '../core/module'
 
 export class ShapeModule extends Module {
+    constructor() {
+        super('shape', 'Случайная фигура');
+    }
     trigger() {
             const shapeTypes = ['square', 'circle', 'triangle'];
             const randomType = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
