@@ -4,7 +4,7 @@ import { ModalWindow } from './modal.module';
 
 export class TimerModule extends Module {
   constructor(type, text) {
-    super('timer', 'Таймер');
+    super('timer', 'Таймер отсчета');
   }
 
   addNotificationContainer() {
