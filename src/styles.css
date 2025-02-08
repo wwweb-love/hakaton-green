@@ -256,3 +256,112 @@ body {
   background-color: rgb(3, 37, 67);
   cursor: pointer;
 }
+
+.modal-overlay {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  background-color: '#343434';
+  background: #343434;
+  opacity: 0.9;
+}
+
+.modal-click-analytics {
+  padding: 30px 100px;
+  background-color: rgb(73, 66, 66);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-click-analytics-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-click-analytics-title {
+  font-size: 30px;
+  font-weight: 300;
+
+}
+
+.modal-click-analytics-count-click {
+  font-size: 19px;
+}
+
+.modal-click-analytics-button {
+  padding: 10px 20px;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.modal-click-analytics-button:active {
+  background-color: #3f538a;
+  color: white;
+}
+
+.modal-click-analytics-time {
+  font-size: 19px;
+}
+
+.modal-click-analytics-statistics {
+  padding: 100px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 100px;
+}
+
+.modal-click-analytics-statistics-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-click-analytics-statistics-title {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.modal-click-analytics-statistics-time {
+  font-size: 22px;
+}
+
+.modal-click-analytics-statistics-click {
+  font-size: 22px;
+}
+
+.modal-click-analytics-close {
+  border-radius: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 9px 15px;
+  background-color: red;
+  color: white
+}
