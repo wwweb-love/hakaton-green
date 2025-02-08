@@ -12,27 +12,42 @@ export class CustomMessageModule extends Module {
     document.body.append(this.$messageContainer);
   }
 
+  isMessageBlockActive = false;
+
+  lastIdx = null;
+
   randomMessage() {
-    return random(0, this.messages.length - 1);
+    let newIdx = random(0, this.messages.length - 1);
+    if (newIdx === this.lastIdx) {
+      return this.randomMessage();
+    } else this.lastIdx = newIdx;
+    return newIdx;
   }
 
   addMessageBlock() {
-    if (!document.querySelector(".message-block")) {
-      const $messageBlock = document.createElement("div");
-      $messageBlock.className = "message-block";
-      $messageBlock.textContent = this.messages[this.randomMessage()];
+    const $messageBlock = document.createElement("div");
+    $messageBlock.className = "message-block";
+    $messageBlock.textContent = this.messages[this.randomMessage()];
 
-      this.$messageContainer.append($messageBlock);
-    }
+    this.$messageContainer.append($messageBlock);
+
+    this.isMessageBlockActive = true;
   }
 
   removeMessageBlock() {
     const $messageBlock = document.querySelector(".message-block");
-    this.$messageContainer.removeChild($messageBlock);
+    $messageBlock.remove();
+    this.isMessageBlockActive = false;
   }
 
   trigger() {
-    this.addMessageBlock();
-    setTimeout(this.removeMessageBlock.bind(this), 2000);
+    if (!this.isMessageBlockActive) {
+      this.addMessageBlock();
+      setTimeout(() => {
+        const $messageBlock = document.querySelector(".message-block");
+        $messageBlock.classList.add("fade-out");
+        setTimeout(this.removeMessageBlock.bind(this), 300);
+      }, 2000);
+    }
   }
 }
