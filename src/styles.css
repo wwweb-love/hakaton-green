@@ -201,10 +201,16 @@ body {
   background-color: #3f538a;
   color: #eee;
   border-radius: 25px;
-  transition: background-color 0.5s;
+  transition: background-color 0.5s, opacity 0.3s ease-in-out;
+}
+
+.message-block.fade-out{
+    opacity: 0;
 }
 
 .message-block:hover{
   background-color: rgb(3, 37, 67);
   cursor: pointer;
 }
+
+
