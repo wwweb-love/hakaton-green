@@ -54,6 +54,54 @@ body {
   background-image: url('./img/timer-white.png');
 }
 
+.menu .menu-item[data-type='click'] {
+  padding-left: 40px;
+  background-image: url(./img/cursor.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='click']:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.menu .menu-item[data-type='audio'] {
+  padding-left: 40px;
+  background-image: url(./img/speak.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='audio']:hover {
+  background-image: url(./img/speak-white.png);
+}
+
+.menu .menu-item[data-type='message'] {
+  padding-left: 40px;
+  background-image: url(./img/message.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='message']:hover {
+  background-image: url(./img/message-white.png);
+}
+
+.menu .menu-item[data-type='shape'] {
+  padding-left: 40px;
+  background-image: url(./img/figure.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='shape']:hover {
+  background-image: url(./img/figure-white.png);
+}
+
 .notification-container {
   position: absolute;
   z-index: 2;
