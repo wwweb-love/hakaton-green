@@ -40,3 +40,31 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
+
+.message-container{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-block{
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 80px;
+    display: flex;
+    padding: 10px;
+    background-color: #3f538a;
+    color: #eee;
+    border-radius: 25px;
+    transition: background-color 0.5s;
+}
+
+.message-block:hover{
+    background-color: rgb(3, 37, 67);
+    cursor: pointer;
+}
