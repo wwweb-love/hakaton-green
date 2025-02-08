@@ -165,3 +165,18 @@ body {
   background: #d83a31;
   background: linear-gradient(135deg, #d83a31, #d62512);
 }
+
+.shape {
+  position: absolute;
+  transition: opacity 2s;
+}
+.circle {
+  border-radius: 50%;
+}
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid transparent;
+}
