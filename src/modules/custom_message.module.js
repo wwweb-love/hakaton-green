@@ -19,7 +19,7 @@ export class CustomMessageModule extends Module {
   randomMessage() {
     let newIdx = random(0, this.messages.length - 1);
     if (newIdx === this.lastIdx) {
-      return this.randomMessage(0, this.messages.length - 1);
+      return this.randomMessage();
     } else this.lastIdx = newIdx;
     return newIdx;
   }
