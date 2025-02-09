@@ -17,11 +17,16 @@ export class TimerModule extends Module {
     const notification = new Notification(this.type, this.text);
     modalTimer.add(id);
     document.querySelector('.timer-form__input').focus();
-    modalTimer.onSubmit = (value) => {
+    modalTimer.onSubmit = (values) => {
       notification.addNotification(id);
       const $timerSpan = document.querySelector(`#timer-span-${id}`);
 
-      let [hours, minutes, seconds] = value.split(':').map(Number);
+      let [hours, minutes, seconds] = [
+        Number(values.hours),
+        Number(values.minutes),
+        Number(values.seconds),
+      ];
+
       let timeInSeconds = hours * 3600 + minutes * 60 + seconds;
 
       let renderTimer = (timeInSeconds) => {
