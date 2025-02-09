@@ -1,9 +1,6 @@
 export default function AddDomNotification() {
-  const $body = document.querySelector('body');
-
-  const $notificationContainer = document.createElement('div');
-  $notificationContainer.classList.add('notification-container');
-  $notificationContainer.id = 'notification-container';
-
-  $body.append($notificationContainer);
+    const $notificationContainer = document.createElement('div')
+    $notificationContainer.classList.add('notification-container')
+    $notificationContainer.id = 'notification-container';
+    document.body.append($notificationContainer)
 }

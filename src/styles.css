@@ -42,6 +42,8 @@ body {
   color: #fff;
 }
 
+/* image ICON */
+
 .menu .menu-item[data-type='timer'] {
   padding-left: 40px;
   background-image: url(./img/timer.png);
@@ -51,7 +53,7 @@ body {
 }
 
 .menu .menu-item[data-type='timer']:hover {
-  background-image: url('./img/timer-white.png');
+  background-image: url(./img/timer-white.png);
 }
 
 .menu .menu-item[data-type='click'] {
@@ -102,6 +104,20 @@ body {
   background-image: url(./img/figure-white.png);
 }
 
+.menu .menu-item[data-type='background'] {
+  padding-left: 40px;
+  background-image: url(./img/color.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='background']:hover {
+  background-image: url(./img/color-white.png);
+}
+
+/* Start edit */
+
 .notification-container {
   position: absolute;
   z-index: 2;
@@ -136,24 +152,20 @@ body {
   background-size: 10%;
   background-repeat: no-repeat;
 }
-
-.notification-item:hover {
+*/ .notification-item:hover {
   color: #fff;
   background-image: url(./img/timer-white.png);
   background-color: #343434;
 }
-
-.notification-item:hover .timer-span {
+*/ .notification-item:hover .timer-span {
   color: #fff;
 }
-
-.notification-span {
+*/ .notification-span {
   position: relative;
   font-size: 20px;
   z-index: 4;
 }
-
-.modal-timer {
+*/ .modal-timer {
   width: 400px;
   height: auto;
   border-radius: 10px;
@@ -171,6 +183,7 @@ body {
   font-size: 18px;
   text-align: center;
 }
+
 .timer-form__input {
   display: block;
   width: 350px;
@@ -213,14 +226,18 @@ body {
   background: #d83a31;
   background: linear-gradient(135deg, #d83a31, #d62512);
 }
+/* ---------------------------------END-TIMER--------------------------------- */
 
+/* ----------------------------------SHAPE--------------------------------- */
 .shape {
   position: absolute;
   transition: opacity 2s;
 }
+
 .circle {
   border-radius: 50%;
 }
+
 .triangle {
   width: 0;
   height: 0;
@@ -229,16 +246,28 @@ body {
   border-bottom: 100px solid transparent;
 }
 
-.message-container {
+/* ---------------------------------END-SHAPE--------------------------------- */
+/* ---------------------------------MESSAGE--------------------------------- */
+
+/* Меняй, выше все стили указаны */
+/* Добавляй структуру 
+
+<div class="message-container notification-container-item">
+  <span class="message-span notification-container-span">Сообщение</span>
+</div>
+
+Добавляй классы!
+*/
+/* .message-container {
   position: fixed;
   top: 20px;
   right: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
-.message-block {
+/* .message-block {
   font-size: 20px;
   justify-content: center;
   align-items: center;
@@ -250,121 +279,19 @@ body {
   color: #eee;
   border-radius: 25px;
   transition: background-color 0.5s, opacity 0.3s ease-in-out;
-}
+} */
 
-.message-block.fade-out {
+/* .message-block.fade-out {
   opacity: 0;
-}
+} */
 
-.message-block:hover {
+/* .message-block:hover {
   background-color: rgb(3, 37, 67);
   cursor: pointer;
-}
+} */
 
-.modal-overlay {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1001;
-  background-color: '#343434';
-  background: #343434;
-  opacity: 0.9;
-}
+/* ---------------------------------END-MESSAGE--------------------------------- */
 
-.modal-click-analytics {
-  padding: 30px 100px;
-  background-color: rgb(73, 66, 66);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.modal-click-analytics-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.modal-click-analytics-title {
-  font-size: 30px;
-  font-weight: 300;
-}
-
-.modal-click-analytics-count-click {
-  font-size: 19px;
-}
-
-.modal-click-analytics-button {
-  padding: 10px 20px;
-  font-size: 19px;
-  cursor: pointer;
-}
-
-.modal-click-analytics-button:active {
-  background-color: #3f538a;
-  color: white;
-}
-
-.modal-click-analytics-time {
-  font-size: 19px;
-}
-
-.modal-click-analytics-statistics {
-  padding: 100px;
-  background-color: black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  justify-content: space-between;
-
-  border-radius: 100px;
-}
-
-.modal-click-analytics-statistics-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.modal-click-analytics-statistics-title {
-  font-size: 30px;
-  font-weight: 300;
-}
-
-.modal-click-analytics-statistics-time {
-  font-size: 22px;
-}
-
-.modal-click-analytics-statistics-click {
-  font-size: 22px;
-}
-
-.modal-click-analytics-close {
-  border-radius: 15px;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 9px 15px;
-  background-color: red;
-  color: white;
-}
+/* -------------------------------------CLICKS------------------------------- */
+/* Удалил и переделал */
+/* -------------------------------------End-CLICKS------------------------------- */
