@@ -117,7 +117,7 @@ body {
   row-gap: 20px;
 }
 
-.timer-container {
+.notification-item {
   z-index: 3;
   bottom: 25px;
   right: 25px;
@@ -137,17 +137,17 @@ body {
   background-repeat: no-repeat;
 }
 
-.timer-container:hover {
+.notification-item:hover {
   color: #fff;
   background-image: url(./img/timer-white.png);
   background-color: #343434;
 }
 
-.timer-container:hover .timer-span {
+.notification-item:hover .timer-span {
   color: #fff;
 }
 
-.timer-span {
+.notification-span {
   position: relative;
   font-size: 20px;
   z-index: 4;
@@ -229,7 +229,7 @@ body {
   border-bottom: 100px solid transparent;
 }
 
-.message-container{
+.message-container {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -238,7 +238,7 @@ body {
   gap: 20px;
 }
 
-.message-block{
+.message-block {
   font-size: 20px;
   justify-content: center;
   align-items: center;
@@ -252,11 +252,11 @@ body {
   transition: background-color 0.5s, opacity 0.3s ease-in-out;
 }
 
-.message-block.fade-out{
-    opacity: 0;
+.message-block.fade-out {
+  opacity: 0;
 }
 
-.message-block:hover{
+.message-block:hover {
   background-color: rgb(3, 37, 67);
   cursor: pointer;
 }
@@ -300,7 +300,6 @@ body {
 .modal-click-analytics-title {
   font-size: 30px;
   font-weight: 300;
-
 }
 
 .modal-click-analytics-count-click {
@@ -367,5 +366,5 @@ body {
   cursor: pointer;
   padding: 9px 15px;
   background-color: red;
-  color: white
+  color: white;
 }
