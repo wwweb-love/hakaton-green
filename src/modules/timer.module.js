@@ -1,19 +1,11 @@
 import { Module } from '../core/module';
 import { timer } from '../utils';
 import { ModalWindow } from './modal.module';
+import { AudioModule } from './audio.module';
 
 export class TimerModule extends Module {
   constructor(type, text) {
     super('timer', 'Таймер отсчета');
-  }
-
-  addNotificationContainer() {
-    if (document.querySelector('#notification-container') === null) {
-      const $notificationContainer = document.createElement('div');
-      $notificationContainer.className = 'notification-container';
-      $notificationContainer.id = 'notification-container';
-      document.body.append($notificationContainer);
-    }
   }
 
   addTimerContainer(id) {
@@ -44,22 +36,22 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    this.addNotificationContainer();
-    const modalTimer = new ModalWindow(
-      'timer',
-      'На сколько секунд поставить таймер?',
-    );
+    const modalTimer = new ModalWindow('timer', 'Задайте время таймера');
+    const audioReminder = new AudioModule();
     const id = Date.now();
     modalTimer.add(id);
+    document.querySelector('.timer-form__input').focus();
     modalTimer.onSubmit = (value) => {
       this.addTimerContainer(id);
-
       const $timerSpan = document.querySelector(`#timer-span-${id}`);
 
-      let renderTimer = (secondsToFinish) => {
-        let hours = Math.floor(secondsToFinish / 3600);
-        let minutes = Math.floor((secondsToFinish % 3600) / 60);
-        let seconds = secondsToFinish % 60;
+      let [hours, minutes, seconds] = value.split(':').map(Number);
+      let timeInSeconds = hours * 3600 + minutes * 60 + seconds;
+
+      let renderTimer = (timeInSeconds) => {
+        let hours = Math.floor(timeInSeconds / 3600);
+        let minutes = Math.floor((timeInSeconds % 3600) / 60);
+        let seconds = timeInSeconds % 60;
 
         if (hours > 0) {
           $timerSpan.textContent = `${hours} часов ${minutes} минут ${seconds} секунд`;
@@ -70,11 +62,13 @@ export class TimerModule extends Module {
         }
 
         if (hours <= 0 && minutes <= 0 && seconds <= 0) {
+          audioReminder.trigger();
           this.removeTimerContainer(id);
         }
       };
-      renderTimer(value);
-      timer(renderTimer, value);
+
+      renderTimer(timeInSeconds);
+      timer(renderTimer, timeInSeconds);
     };
   }
 }
