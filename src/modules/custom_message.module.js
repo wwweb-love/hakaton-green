@@ -6,7 +6,6 @@ export class CustomMessageModule extends Module {
     super(type, text);
 
     this.state = {
-      isBLockActive: false,
       lastIdx: null,
       messages: ["Хе-хе!", "Иди работать!", "А ты хорош!", "Все, перестань", "И так сойдет!"],
     };
@@ -24,11 +23,12 @@ export class CustomMessageModule extends Module {
     return newIdx;
   }
 
-  addMessageContainer() {
+  addMessageContainer(id) {
     const $notificationContainer = document.querySelector(".notification-container");
 
     const $messageContainer = document.createElement("div");
     $messageContainer.className = "message-container notification-container-item";
+    $messageContainer.id = `${id}`;
 
     const $messageSpan = document.createElement("span");
     $messageSpan.className = "message-span notification-container-span";
@@ -37,21 +37,17 @@ export class CustomMessageModule extends Module {
     $messageContainer.append($messageSpan);
 
     $notificationContainer.append($messageContainer);
-
-    this.state.isBLockActive = true;
-
-    this.$messageContainer = $messageContainer;
   }
 
-  removeMessageContainer() {
-    this.$messageContainer.remove();
-    this.state.isBLockActive = false;
+  removeMessageContainer(id) {
+    const $messageContainer = document.getElementById(id);
+    console.log(id);
+    $messageContainer.remove();
   }
 
   trigger() {
-    if (!this.state.isBLockActive) {
-      this.addMessageContainer();
-      setTimeout(this.removeMessageContainer.bind(this), 2000);
-    }
+    const id = Date.now();
+    this.addMessageContainer(id);
+    setTimeout(() => this.removeMessageContainer(id), 2000);
   }
 }
