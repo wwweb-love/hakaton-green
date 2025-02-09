@@ -1,5 +1,6 @@
 import { Module } from "../core/module";
 import { random } from "../utiles/random";
+import { Notification } from "./notification.module";
 
 export class CustomMessageModule extends Module {
   constructor(type, text) {
@@ -23,30 +24,13 @@ export class CustomMessageModule extends Module {
     return newIdx;
   }
 
-  addMessageContainer(id) {
-    const $notificationContainer = document.querySelector(".notification-container");
-
-    const $messageContainer = document.createElement("div");
-    $messageContainer.className = "message-container notification-container-item";
-    $messageContainer.id = `${id}`;
-
-    const $messageSpan = document.createElement("span");
-    $messageSpan.className = "message-span notification-container-span";
-    $messageSpan.textContent = this.messages[this.randomMessage()];
-
-    $messageContainer.append($messageSpan);
-
-    $notificationContainer.append($messageContainer);
-  }
-
-  removeMessageContainer(id) {
-    const $messageContainer = document.getElementById(id);
-    $messageContainer.remove();
-  }
-
   trigger() {
+    const notification = new Notification(this.type, this.text);
+
     const id = Date.now();
-    this.addMessageContainer(id);
-    setTimeout(() => this.removeMessageContainer(id), 2000);
+    notification.addNotification(id);
+    const $messageSpan = document.querySelector(`#${this.type}-span-${id}`);
+    $messageSpan.textContent = this.messages[this.randomMessage()];
+    setTimeout(() => notification.removeNotification(id), 4000);
   }
 }
