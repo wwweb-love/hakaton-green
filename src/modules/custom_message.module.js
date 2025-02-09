@@ -1,5 +1,5 @@
 import { Module } from "../core/module";
-import { random } from "../utils";
+import { random } from "../utiles/random";
 
 export class CustomMessageModule extends Module {
   constructor(type, text) {
@@ -41,7 +41,6 @@ export class CustomMessageModule extends Module {
 
   removeMessageContainer(id) {
     const $messageContainer = document.getElementById(id);
-    console.log(id);
     $messageContainer.remove();
   }
 
