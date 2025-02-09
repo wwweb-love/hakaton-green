@@ -42,6 +42,8 @@ body {
   color: #fff;
 }
 
+/* image ICON */
+
 .menu .menu-item[data-type='timer'] {
   padding-left: 40px;
   background-image: url(./img/timer.png);
@@ -51,7 +53,7 @@ body {
 }
 
 .menu .menu-item[data-type='timer']:hover {
-  background-image: url('./img/timer-white.png');
+  background-image: url(./img/timer-white.png);
 }
 
 .menu .menu-item[data-type='click'] {
@@ -102,6 +104,18 @@ body {
   background-image: url(./img/figure-white.png);
 }
 
+.menu .menu-item[data-type='background'] {
+  padding-left: 40px;
+  background-image: url(./img/color.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='background']:hover {
+  background-image: url(./img/color-white.png);
+}
+
 /* Start edit */
 
 .notification-container {
@@ -119,7 +133,12 @@ body {
   row-gap: 20px;
 }
 
+
 .notification-container-item {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+
   z-index: 3;
   bottom: 25px;
   right: 25px;
@@ -138,33 +157,15 @@ body {
   background-repeat: no-repeat;
 }
 
-.timer-container {
-  background-image: url(./img/timer.png);
-}
-
-.click-container {
-  background-image: url(./img/cursor.png);
-}
-
-.message-container {
-  background-image: url(./img/message.png);
-}
-
 .notification-container-item:hover {
   color: #fff;
   background-color: #343434;
 }
 
-.timer-container:hover {
-  background-image: url(./img/timer-white.png);
-}
-
-.click-container:hover {
-  background-image: url(./img/cursor-white.png);
-}
-
-.message-container:hover {
-  background-image: url(./img/message-white.png);
+.notification-container-item-remove {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s 1s, opacity 1s linear;
 }
 
 .notification-container-span {
@@ -173,66 +174,39 @@ body {
   z-index: 4;
 }
 
+.timer-container {
+  background-image: url(./img/timer.png);
+}
+.timer-container:hover {
+  background-image: url(./img/timer-white.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.message-container {
+  background-image: url(./img/message.png);
+}
+
+.message-container:hover {
+  background-image: url(./img/message-white.png);
+}
+
 /* End edit */
 
 
 /* ----------------------------------TIMER--------------------------------- */
-
-/* Уже прописан выше */
-/* .notification-container {
-  position: absolute;
-  z-index: 2;
-  bottom: 25px;
-  right: 25px;
-  min-width: 300px;
-  min-height: 100px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 20px;
-} */
-
-/* Добавь класс .notification-container-item */
-/* .timer-container {
-  z-index: 3;
-  bottom: 25px;
-  right: 25px;
-  min-width: 300px;
-  min-height: 100px;
-
-  background-color: rgba(77, 77, 77, 0.5);
-  border-radius: 25px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px 0 60px;
-  background-image: url(./img/timer.png);
-  background-position: 15px;
-  background-size: 10%;
-  background-repeat: no-repeat;
-} */
-
-/* .notification-container-item */
-/* .timer-container:hover {
-  color: #fff;
-  background-image: url(./img/timer-white.png);
-  background-color: #343434;
-} */
-
-/* .notification-container-item:hover */
-/* .timer-container:hover .timer-span {
-  color: #fff;
-} */
-
-/* Добавь класс .notification-container-span */
-/* .timer-span {
-  position: relative;
-  font-size: 20px;
-  z-index: 4;
-} */
 
 .modal-timer {
   width: 400px;
@@ -317,7 +291,48 @@ body {
 
 /* ---------------------------------END-SHAPE--------------------------------- */
 /* ---------------------------------MESSAGE--------------------------------- */
-/*Удалил*/
+
+/* Меняй, выше все стили указаны */
+/* Добавляй структуру 
+
+<div class="message-container notification-container-item">
+  <span class="message-span notification-container-span">Сообщение</span>
+</div>
+
+Добавляй классы!
+*/
+/* .message-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+} */
+
+/* .message-block {
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 80px;
+  display: flex;
+  padding: 10px;
+  background-color: #3f538a;
+  color: #eee;
+  border-radius: 25px;
+  transition: background-color 0.5s, opacity 0.3s ease-in-out;
+} */
+
+/* .message-block.fade-out {
+  opacity: 0;
+} */
+
+/* .message-block:hover {
+  background-color: rgb(3, 37, 67);
+  cursor: pointer;
+} */
+
 /* ---------------------------------END-MESSAGE--------------------------------- */
 
 /* -------------------------------------CLICKS------------------------------- */

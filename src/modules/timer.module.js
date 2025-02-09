@@ -1,65 +1,33 @@
 import { Module } from '../core/module';
 import { timer } from '../utils';
 import { ModalWindow } from './modal.module';
+import { AudioModule } from './audio.module';
+import { Notification } from './notification.module';
 
 export class TimerModule extends Module {
   constructor(type, text) {
     super('timer', 'Таймер отсчета');
   }
 
-  addNotificationContainer() {
-    if (document.querySelector('#notification-container') === null) {
-      const $notificationContainer = document.createElement('div');
-      $notificationContainer.className = 'notification-container';
-      $notificationContainer.id = 'notification-container';
-      document.body.append($notificationContainer);
-    }
-  }
-
-  addTimerContainer(id) {
-    const $timerContainer = document.createElement('div');
-    $timerContainer.className = 'timer-container';
-    $timerContainer.id = `timer-${id}`;
-
-    const $timerSpan = document.createElement('span');
-    $timerSpan.className = 'timer-span';
-    $timerSpan.id = `timer-span-${id}`;
-    $timerContainer.append($timerSpan);
-
-    const $notificationContainer = document.querySelector(
-      '#notification-container',
-    );
-
-    $notificationContainer.append($timerContainer);
-    this.addTimerContainer.bind(this);
-  }
-
-  removeTimerContainer(id) {
-    const $timerContainer = document.querySelector(`#timer-${id}`);
-    const $notificationContainer = document.querySelector(
-      '#notification-container',
-    );
-    $notificationContainer.removeChild($timerContainer);
-    this.removeTimerContainer.bind(this);
-  }
-
   trigger() {
-    this.addNotificationContainer();
-    const modalTimer = new ModalWindow(
-      'timer',
-      'На сколько секунд поставить таймер?',
-    );
     const id = Date.now();
-    modalTimer.add(id);
-    modalTimer.onSubmit = (value) => {
-      this.addTimerContainer(id);
 
+    const modalTimer = new ModalWindow('timer', 'Задайте время таймера');
+    const audioReminder = new AudioModule();
+    const notification = new Notification(this.type, this.text);
+    modalTimer.add(id);
+    document.querySelector('.timer-form__input').focus();
+    modalTimer.onSubmit = (value) => {
+      notification.addNotification(id);
       const $timerSpan = document.querySelector(`#timer-span-${id}`);
 
-      let renderTimer = (secondsToFinish) => {
-        let hours = Math.floor(secondsToFinish / 3600);
-        let minutes = Math.floor((secondsToFinish % 3600) / 60);
-        let seconds = secondsToFinish % 60;
+      let [hours, minutes, seconds] = value.split(':').map(Number);
+      let timeInSeconds = hours * 3600 + minutes * 60 + seconds;
+
+      let renderTimer = (timeInSeconds) => {
+        let hours = Math.floor(timeInSeconds / 3600);
+        let minutes = Math.floor((timeInSeconds % 3600) / 60);
+        let seconds = timeInSeconds % 60;
 
         if (hours > 0) {
           $timerSpan.textContent = `${hours} часов ${minutes} минут ${seconds} секунд`;
@@ -70,11 +38,13 @@ export class TimerModule extends Module {
         }
 
         if (hours <= 0 && minutes <= 0 && seconds <= 0) {
-          this.removeTimerContainer(id);
+          audioReminder.trigger();
+          notification.removeNotification(id);
         }
       };
-      renderTimer(value);
-      timer(renderTimer, value);
+
+      renderTimer(timeInSeconds);
+      timer(renderTimer, timeInSeconds);
     };
   }
 }
