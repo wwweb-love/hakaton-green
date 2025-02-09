@@ -66,5 +66,7 @@ export class ModalInfoClick {
         const $notificationContainer = document.querySelector('.notification-container')
         $notificationContainer.append($clickContainer)
         $clickSpan.textContent = `Количество кликов ${countClick}`
+
+        this.$clickContainer = $clickContainer
     }
 }

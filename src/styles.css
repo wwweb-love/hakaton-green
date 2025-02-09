@@ -134,6 +134,10 @@ body {
 }
 
 .notification-container-item {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+
   z-index: 3;
   bottom: 25px;
   right: 25px;
@@ -155,6 +159,12 @@ body {
 .notification-container-item:hover {
   color: #fff;
   background-color: #343434;
+}
+
+.notification-container-item-remove {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s 1s, opacity 1s linear;
 }
 
 .notification-container-span {
