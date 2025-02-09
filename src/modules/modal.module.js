@@ -63,7 +63,6 @@ export class ModalWindow extends Module {
         event.target.value = event.target.value.replace(/\D/g, '');
       });
 
-      // Ограничение максимальных значений для минут и секунд
       if (item === 'minutes' || item === 'seconds') {
         $modalInput.addEventListener('input', (event) => {
           const value = parseInt(event.target.value, 10);
