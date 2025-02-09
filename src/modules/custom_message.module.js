@@ -5,49 +5,53 @@ export class CustomMessageModule extends Module {
   constructor(type, text) {
     super(type, text);
 
-    this.messages = ["Хе-хе!", "Иди работать!", "А ты хорош!", "Все, перестань", "И так сойдет!"];
-
-    this.$messageContainer = document.createElement("div");
-    this.$messageContainer.className = "message-container";
-    document.body.append(this.$messageContainer);
+    this.state = {
+      isBLockActive: false,
+      lastIdx: null,
+      messages: ["Хе-хе!", "Иди работать!", "А ты хорош!", "Все, перестань", "И так сойдет!"],
+    };
   }
 
-  isMessageBlockActive = false;
-
-  lastIdx = null;
+  get messages() {
+    return this.state.messages;
+  }
 
   randomMessage() {
     let newIdx = random(0, this.messages.length - 1);
-    if (newIdx === this.lastIdx) {
+    if (newIdx === this.state.lastIdx) {
       return this.randomMessage();
-    } else this.lastIdx = newIdx;
+    } else this.state.lastIdx = newIdx;
     return newIdx;
   }
 
-  addMessageBlock() {
-    const $messageBlock = document.createElement("div");
-    $messageBlock.className = "message-block";
-    $messageBlock.textContent = this.messages[this.randomMessage()];
+  addMessageContainer() {
+    const $notificationContainer = document.querySelector(".notification-container");
 
-    this.$messageContainer.append($messageBlock);
+    const $messageContainer = document.createElement("div");
+    $messageContainer.className = "message-container notification-container-item";
 
-    this.isMessageBlockActive = true;
+    const $messageSpan = document.createElement("span");
+    $messageSpan.className = "message-span notification-container-span";
+    $messageSpan.textContent = this.messages[this.randomMessage()];
+
+    $messageContainer.append($messageSpan);
+
+    $notificationContainer.append($messageContainer);
+
+    this.state.isBLockActive = true;
+
+    this.$messageContainer = $messageContainer;
   }
 
-  removeMessageBlock() {
-    const $messageBlock = document.querySelector(".message-block");
-    $messageBlock.remove();
-    this.isMessageBlockActive = false;
+  removeMessageContainer() {
+    this.$messageContainer.remove();
+    this.state.isBLockActive = false;
   }
 
   trigger() {
-    if (!this.isMessageBlockActive) {
-      this.addMessageBlock();
-      setTimeout(() => {
-        const $messageBlock = document.querySelector(".message-block");
-        $messageBlock.classList.add("fade-out");
-        setTimeout(this.removeMessageBlock.bind(this), 300);
-      }, 2000);
+    if (!this.state.isBLockActive) {
+      this.addMessageContainer();
+      setTimeout(this.removeMessageContainer.bind(this), 2000);
     }
   }
 }
