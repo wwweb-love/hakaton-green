@@ -42,6 +42,8 @@ body {
   color: #fff;
 }
 
+/* image ICON */
+
 .menu .menu-item[data-type='timer'] {
   padding-left: 40px;
   background-image: url(./img/timer.png);
@@ -51,7 +53,7 @@ body {
 }
 
 .menu .menu-item[data-type='timer']:hover {
-  background-image: url('./img/timer-white.png');
+  background-image: url(./img/timer-white.png);
 }
 
 .menu .menu-item[data-type='click'] {
@@ -102,6 +104,18 @@ body {
   background-image: url(./img/figure-white.png);
 }
 
+.menu .menu-item[data-type='background'] {
+  padding-left: 40px;
+  background-image: url(./img/color.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+}
+
+.menu .menu-item[data-type='background']:hover {
+  background-image: url(./img/color-white.png);
+}
+
 /* Start edit */
 
 .notification-container {
@@ -138,33 +152,9 @@ body {
   background-repeat: no-repeat;
 }
 
-.timer-container {
-  background-image: url(./img/timer.png);
-}
-
-.click-container {
-  background-image: url(./img/cursor.png);
-}
-
-.message-container {
-  background-image: url(./img/message.png);
-}
-
 .notification-container-item:hover {
   color: #fff;
   background-color: #343434;
-}
-
-.timer-container:hover {
-  background-image: url(./img/timer-white.png);
-}
-
-.click-container:hover {
-  background-image: url(./img/cursor-white.png);
-}
-
-.message-container:hover {
-  background-image: url(./img/message-white.png);
 }
 
 .notification-container-span {
