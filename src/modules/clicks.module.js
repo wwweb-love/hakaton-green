@@ -15,9 +15,10 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
-        this.state.seconds = 3
 
         if (!this.state.activate) {
+            this.state.seconds = 3
+
             this.state.activate = true
 
             // Открываем модальное окно
