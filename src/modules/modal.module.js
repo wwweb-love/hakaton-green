@@ -45,10 +45,12 @@ export class ModalWindow extends Module {
     $modalInput.className = `${this.type}-form__input`;
     $modalInput.id = `${this.type}-${id}`;
     $modalInput.name = 'amount';
-    $modalInput.type = 'number';
-    $modalInput.min = '1';
+    $modalInput.type = 'text';
     $modalInput.setAttribute('required', '');
     $modalInput.setAttribute('autofocus', '');
+    $modalInput.setAttribute('maxlength', '8');
+    $modalInput.setAttribute('placeholder', '00:00:00');
+    
 
     const $modalSubmit = document.createElement('button');
     $modalSubmit.className = 'modal-submit';
@@ -80,29 +82,39 @@ export class ModalWindow extends Module {
     const $modalSubmit = document.querySelector('.modal-submit');
     const $modalInput = document.querySelector(`#${this.type}-${id}`);
     let value;
+
     $modalOverlay.addEventListener('click', (event) => {
-      $modalInput.focus();
       if (event.target === $modalOverlay) {
-        document.body.removeChild($modalOverlay);
-        document.body.removeChild($modalContainer);
+        this.destroy();
       }
     });
 
     $modalContainer.addEventListener('click', (event) => {
-      $modalInput.focus();
       if (event.target === $modalClose) {
         event.preventDefault();
         this.destroy();
       }
       if (event.target === $modalSubmit) {
         event.preventDefault();
-        value = $modalInput.value;
-        this.destroy();
-        this.setValue(value);
+
         if (this.onSubmit) {
           this.onSubmit(value);
         }
+
+        this.destroy();
       }
+    });
+
+    $modalInput.addEventListener('input', (event) => {
+      value = event.target.value;
+      value = value.replace(/\D/g, '');
+      if (value.length > 2) {
+        value = value.slice(0, 2) + ':' + value.slice(2);
+      }
+      if (value.length > 5) {
+        value = value.slice(0, 5) + ':' + value.slice(5);
+      }
+      event.target.value = value;
     });
   }
 
