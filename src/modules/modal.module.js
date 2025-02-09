@@ -41,16 +41,55 @@ export class ModalWindow extends Module {
     $modalLabel.textContent = `${this.text}`;
     $modalLabel.setAttribute('for', `${this.type}-${id}`);
 
-    const $modalInput = document.createElement('input');
-    $modalInput.className = `${this.type}-form__input`;
-    $modalInput.id = `${this.type}-${id}`;
-    $modalInput.name = 'amount';
-    $modalInput.type = 'text';
-    $modalInput.setAttribute('required', '');
-    $modalInput.setAttribute('autofocus', '');
-    $modalInput.setAttribute('maxlength', '8');
-    $modalInput.setAttribute('placeholder', '00:00:00');
-    
+    const $modalInputsContainer = document.createElement('div');
+    $modalInputsContainer.className = 'modal-inputs-container';
+    $modalInputsContainer.style.display = 'flex';
+    $modalInputsContainer.style.justifyContent = 'space-around';
+
+    ['hours', 'minutes', 'seconds'].forEach((item) => {
+      const $modalInput = document.createElement('input');
+      $modalInput.className = `${this.type}-form__input`;
+      $modalInput.style.width = `60px`;
+      $modalInput.style.textAlign = `center`;
+      $modalInput.style.padding = `0`;
+      $modalInput.style.margin = `0`;
+      $modalInput.id = `${this.type}-${item}-${id}`;
+      $modalInput.name = `${item}`;
+      $modalInput.setAttribute('required', '');
+      $modalInput.setAttribute('maxlength', '2');
+      $modalInput.setAttribute('placeholder', '00');
+
+      $modalInput.addEventListener('input', (event) => {
+        event.target.value = event.target.value.replace(/\D/g, '');
+      });
+
+      // Ограничение максимальных значений для минут и секунд
+      if (item === 'minutes' || item === 'seconds') {
+        $modalInput.addEventListener('input', (event) => {
+          const value = parseInt(event.target.value, 10);
+          if (value > 59) {
+            event.target.value = '59';
+          }
+        });
+      }
+
+      $modalInputsContainer.append($modalInput);
+    });
+
+    const $modalHintsContainer = document.createElement('div');
+    $modalHintsContainer.className = 'modal-inputs-container';
+    $modalHintsContainer.style.display = 'flex';
+    $modalHintsContainer.style.justifyContent = 'space-around';
+
+    ['часы', 'минуты', 'секунды'].forEach((item) => {
+      const $modalHint = document.createElement('span');
+      $modalHint.textContent = `${item}`;
+      $modalHint.style.width = `60px`;
+      $modalHint.style.color = `#fff`;
+      $modalHint.style.textAlign = `center`;
+
+      $modalHintsContainer.append($modalHint);
+    });
 
     const $modalSubmit = document.createElement('button');
     $modalSubmit.className = 'modal-submit';
@@ -66,7 +105,12 @@ export class ModalWindow extends Module {
     $modalButtons.className = 'modal-form__buttons';
     $modalButtons.append($modalSubmit, $modalClose);
 
-    $modalForm.append($modalLabel, $modalInput, $modalButtons);
+    $modalForm.append(
+      $modalLabel,
+      $modalInputsContainer,
+      $modalHintsContainer,
+      $modalButtons,
+    );
 
     $modalContainer.append($modalForm);
     document.body.append($modalOverlay, $modalContainer);
@@ -80,8 +124,19 @@ export class ModalWindow extends Module {
     const $modalContainer = document.querySelector(`.modal-${this.type}`);
     const $modalClose = document.querySelector('.modal-close');
     const $modalSubmit = document.querySelector('.modal-submit');
-    const $modalInput = document.querySelector(`#${this.type}-${id}`);
-    let value;
+    const $modalInputs = document.querySelectorAll(`.${this.type}-form__input`);
+
+    $modalInputs.forEach((input) => {
+      input.addEventListener('input', (event) => {
+        let value = event.target.value;
+        value = value.replace(/\D/g, '');
+
+        if (value.length > 2) {
+          value = value.slice(0, 2);
+        }
+        event.target.value = value;
+      });
+    });
 
     $modalOverlay.addEventListener('click', (event) => {
       if (event.target === $modalOverlay) {
@@ -97,24 +152,24 @@ export class ModalWindow extends Module {
       if (event.target === $modalSubmit) {
         event.preventDefault();
 
+        const inputValues = {};
+
+        $modalInputs.forEach((input) => {
+          inputValues[input.name] = input.value;
+
+          if (input.name === 'minutes' || input.name === 'seconds') {
+            const value = parseInt(input.value, 10);
+            if (value > 59) {
+              input.value = 0;
+            }
+          }
+        });
+
         if (this.onSubmit) {
-          this.onSubmit(value);
+          this.onSubmit(inputValues);
+          this.destroy();
         }
-
-        this.destroy();
       }
-    });
-
-    $modalInput.addEventListener('input', (event) => {
-      value = event.target.value;
-      value = value.replace(/\D/g, '');
-      if (value.length > 2) {
-        value = value.slice(0, 2) + ':' + value.slice(2);
-      }
-      if (value.length > 5) {
-        value = value.slice(0, 5) + ':' + value.slice(5);
-      }
-      event.target.value = value;
     });
   }
 
