@@ -2,47 +2,23 @@ import { Module } from '../core/module';
 import { timer } from '../utils';
 import { ModalWindow } from './modal.module';
 import { AudioModule } from './audio.module';
+import { Notification } from './notification.module';
 
 export class TimerModule extends Module {
   constructor(type, text) {
     super('timer', 'Таймер отсчета');
   }
 
-  addTimerContainer(id) {
-    const $timerContainer = document.createElement('div');
-    $timerContainer.className = 'timer-container';
-    $timerContainer.id = `timer-${id}`;
-
-    const $timerSpan = document.createElement('span');
-    $timerSpan.className = 'timer-span';
-    $timerSpan.id = `timer-span-${id}`;
-    $timerContainer.append($timerSpan);
-
-    const $notificationContainer = document.querySelector(
-      '#notification-container',
-    );
-
-    $notificationContainer.append($timerContainer);
-    this.addTimerContainer.bind(this);
-  }
-
-  removeTimerContainer(id) {
-    const $timerContainer = document.querySelector(`#timer-${id}`);
-    const $notificationContainer = document.querySelector(
-      '#notification-container',
-    );
-    $notificationContainer.removeChild($timerContainer);
-    this.removeTimerContainer.bind(this);
-  }
-
   trigger() {
+    const id = Date.now();
+
     const modalTimer = new ModalWindow('timer', 'Задайте время таймера');
     const audioReminder = new AudioModule();
-    const id = Date.now();
+    const notification = new Notification(this.type, this.text);
     modalTimer.add(id);
     document.querySelector('.timer-form__input').focus();
     modalTimer.onSubmit = (value) => {
-      this.addTimerContainer(id);
+      notification.addNotification(id);
       const $timerSpan = document.querySelector(`#timer-span-${id}`);
 
       let [hours, minutes, seconds] = value.split(':').map(Number);
@@ -63,7 +39,7 @@ export class TimerModule extends Module {
 
         if (hours <= 0 && minutes <= 0 && seconds <= 0) {
           audioReminder.trigger();
-          this.removeTimerContainer(id);
+          notification.removeNotification(id);
         }
       };
 
