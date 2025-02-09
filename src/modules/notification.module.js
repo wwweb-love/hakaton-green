@@ -28,9 +28,13 @@ export class Notification extends Module {
     const $notificationContainer = document.querySelector(
       '#notification-container',
     );
-    $notificationContainer.removeChild($notificationItem);
-    this.removeNotification.bind(this);
+
+    $notificationItem.classList.add('notification-container-item-remove')
+    setTimeout(() => {
+      $notificationContainer.removeChild($notificationItem);
+      this.removeNotification.bind(this);
+    }, 1000)
   }
 
-  trigger() {}
+  trigger() { }
 }
