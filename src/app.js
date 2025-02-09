@@ -10,6 +10,8 @@ import { BackgroundModule } from '../src/modules/background.module';
 
 import AddDomNotification from './utiles/notification';
 
+import AddDomNotification from './utiles/notification'
+
 // здесь добавляем элементы в меню с помощью contextMenu.add(*экземпляр класса*)
 const contextMenu = new ContextMenu('#menu');
 const timer = new TimerModule();
@@ -21,6 +23,7 @@ const background = new BackgroundModule();
 
 // здесь добавляем элементы в меню с помощью contextMenu.add(*экземпляр класса*)
 AddDomNotification();
+
 
 contextMenu.add(timer);
 contextMenu.add(shape);
