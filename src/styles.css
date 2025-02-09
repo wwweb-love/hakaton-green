@@ -133,6 +133,7 @@ body {
   row-gap: 20px;
 }
 
+
 .notification-container-item {
   visibility: visible;
   opacity: 1;
@@ -206,62 +207,6 @@ body {
 
 
 /* ----------------------------------TIMER--------------------------------- */
-
-/* Уже прописан выше */
-/* .notification-container {
-  position: absolute;
-  z-index: 2;
-  bottom: 25px;
-  right: 25px;
-  min-width: 300px;
-  min-height: 100px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 20px;
-} */
-
-/* Добавь класс .notification-container-item */
-/* .timer-container {
-  z-index: 3;
-  bottom: 25px;
-  right: 25px;
-  min-width: 300px;
-  min-height: 100px;
-
-  background-color: rgba(77, 77, 77, 0.5);
-  border-radius: 25px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px 0 60px;
-  background-image: url(./img/timer.png);
-  background-position: 15px;
-  background-size: 10%;
-  background-repeat: no-repeat;
-} */
-
-/* .notification-container-item */
-/* .timer-container:hover {
-  color: #fff;
-  background-image: url(./img/timer-white.png);
-  background-color: #343434;
-} */
-
-/* .notification-container-item:hover */
-/* .timer-container:hover .timer-span {
-  color: #fff;
-} */
-
-/* Добавь класс .notification-container-span */
-/* .timer-span {
-  position: relative;
-  font-size: 20px;
-  z-index: 4;
-} */
 
 .modal-timer {
   width: 400px;

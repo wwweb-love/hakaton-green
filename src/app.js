@@ -22,7 +22,6 @@ const background = new BackgroundModule();
 // здесь добавляем элементы в меню с помощью contextMenu.add(*экземпляр класса*)
 AddDomNotification();
 
-
 contextMenu.add(timer);
 contextMenu.add(shape);
 contextMenu.add(audio);
