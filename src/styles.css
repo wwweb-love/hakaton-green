@@ -102,281 +102,7 @@ body {
   background-image: url(./img/figure-white.png);
 }
 
-.notification-container {
-  position: absolute;
-  z-index: 2;
-  bottom: 25px;
-  right: 25px;
-  min-width: 300px;
-  min-height: 100px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 20px;
-}
-
-.timer-container {
-  z-index: 3;
-  bottom: 25px;
-  right: 25px;
-  min-width: 300px;
-  min-height: 100px;
-
-  background-color: rgba(77, 77, 77, 0.5);
-  border-radius: 25px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px 0 60px;
-  background-image: url(./img/timer.png);
-  background-position: 15px;
-  background-size: 10%;
-  background-repeat: no-repeat;
-}
-
-.timer-container:hover {
-  color: #fff;
-  background-image: url(./img/timer-white.png);
-  background-color: #343434;
-}
-
-.timer-container:hover .timer-span {
-  color: #fff;
-}
-
-.timer-span {
-  position: relative;
-  font-size: 20px;
-  z-index: 4;
-}
-
-.modal-timer {
-  width: 400px;
-  height: auto;
-  border-radius: 10px;
-  padding: 25px;
-}
-
-.timer-form {
-  width: 100%;
-  height: 100%;
-}
-
-.timer-form__input-label {
-  display: block;
-  color: #fff;
-  font-size: 18px;
-  text-align: center;
-}
-
-.timer-form__input {
-  display: block;
-  width: 350px;
-  height: 40px;
-  margin-top: 20px;
-  position: relative;
-  font-size: 30px;
-  border-radius: 7px;
-  padding-left: 10px;
-}
-
-.modal-form__buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.modal-submit,
-.modal-close {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  color: #d4d4d4;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.modal-submit:hover,
-.modal-close:hover {
-  cursor: pointer;
-}
-
-.modal-submit {
-  background: #31ca85;
-  background: linear-gradient(135deg, #31ca85, #5ebc23);
-}
-
-.modal-close {
-  background: #d83a31;
-  background: linear-gradient(135deg, #d83a31, #d62512);
-}
-
-.shape {
-  position: absolute;
-  transition: opacity 2s;
-}
-
-.circle {
-  border-radius: 50%;
-}
-
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid transparent;
-}
-
-.message-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.message-block {
-  font-size: 20px;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 80px;
-  display: flex;
-  padding: 10px;
-  background-color: #3f538a;
-  color: #eee;
-  border-radius: 25px;
-  transition: background-color 0.5s, opacity 0.3s ease-in-out;
-}
-
-.message-block.fade-out {
-  opacity: 0;
-}
-
-.message-block:hover {
-  background-color: rgb(3, 37, 67);
-  cursor: pointer;
-}
-
-.modal-overlay {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1001;
-  background-color: '#343434';
-  background: #343434;
-  opacity: 0.9;
-}
-
-.modal-click-analytics {
-  padding: 30px 100px;
-  background-color: rgb(73, 66, 66);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.modal-click-analytics-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.modal-click-analytics-title {
-  font-size: 30px;
-  font-weight: 300;
-
-}
-
-.modal-click-analytics-count-click {
-  font-size: 19px;
-}
-
-.modal-click-analytics-button {
-  padding: 10px 20px;
-  font-size: 19px;
-  cursor: pointer;
-}
-
-.modal-click-analytics-button:active {
-  background-color: #3f538a;
-  color: white;
-}
-
-.modal-click-analytics-time {
-  font-size: 19px;
-}
-
-.modal-click-analytics-statistics {
-  padding: 100px;
-  background-color: black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  justify-content: space-between;
-
-  border-radius: 100px;
-}
-
-.modal-click-analytics-statistics-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.modal-click-analytics-statistics-title {
-  font-size: 30px;
-  font-weight: 300;
-}
-
-.modal-click-analytics-statistics-time {
-  font-size: 22px;
-}
-
-.modal-click-analytics-statistics-click {
-  font-size: 22px;
-}
-
-.modal-click-analytics-close {
-  border-radius: 15px;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 9px 15px;
-  background-color: red;
-  color: white
-}
-
-
-/* ------------------------ */
-
-/* Сверху убрать лишнее и вставить это  */
+/* Start edit */
 
 .notification-container {
   position: absolute;
@@ -446,3 +172,195 @@ body {
   font-size: 20px;
   z-index: 4;
 }
+
+/* End edit */
+
+
+/* ----------------------------------TIMER--------------------------------- */
+
+/* Уже прописан выше */
+/* .notification-container {
+  position: absolute;
+  z-index: 2;
+  bottom: 25px;
+  right: 25px;
+  min-width: 300px;
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 20px;
+} */
+
+/* Добавь класс .notification-container-item */
+/* .timer-container {
+  z-index: 3;
+  bottom: 25px;
+  right: 25px;
+  min-width: 300px;
+  min-height: 100px;
+
+  background-color: rgba(77, 77, 77, 0.5);
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px 0 60px;
+  background-image: url(./img/timer.png);
+  background-position: 15px;
+  background-size: 10%;
+  background-repeat: no-repeat;
+} */
+
+/* .notification-container-item */
+/* .timer-container:hover {
+  color: #fff;
+  background-image: url(./img/timer-white.png);
+  background-color: #343434;
+} */
+
+/* .notification-container-item:hover */
+/* .timer-container:hover .timer-span {
+  color: #fff;
+} */
+
+/* Добавь класс .notification-container-span */
+/* .timer-span {
+  position: relative;
+  font-size: 20px;
+  z-index: 4;
+} */
+
+.modal-timer {
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.timer-form {
+  width: 100%;
+  height: 100%;
+}
+
+.timer-form__input-label {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+.timer-form__input {
+  display: block;
+  width: 350px;
+  height: 40px;
+  margin-top: 20px;
+  position: relative;
+  font-size: 30px;
+  border-radius: 7px;
+  padding-left: 10px;
+}
+
+.modal-form__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-submit,
+.modal-close {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: #d4d4d4;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modal-submit:hover,
+.modal-close:hover {
+  cursor: pointer;
+}
+
+.modal-submit {
+  background: #31ca85;
+  background: linear-gradient(135deg, #31ca85, #5ebc23);
+}
+
+.modal-close {
+  background: #d83a31;
+  background: linear-gradient(135deg, #d83a31, #d62512);
+}
+/* ---------------------------------END-TIMER--------------------------------- */
+
+/* ----------------------------------SHAPE--------------------------------- */
+.shape {
+  position: absolute;
+  transition: opacity 2s;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid transparent;
+}
+
+/* ---------------------------------END-SHAPE--------------------------------- */
+/* ---------------------------------MESSAGE--------------------------------- */
+
+/* Меняй, выше все стили указаны */
+/* Добавляй структуру 
+
+<div class="message-container notification-container-item">
+  <span class="message-span notification-container-span">Сообщение</span>
+</div>
+
+Добавляй классы!
+*/
+/* .message-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+} */
+
+/* .message-block {
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 80px;
+  display: flex;
+  padding: 10px;
+  background-color: #3f538a;
+  color: #eee;
+  border-radius: 25px;
+  transition: background-color 0.5s, opacity 0.3s ease-in-out;
+} */
+
+/* .message-block.fade-out {
+  opacity: 0;
+} */
+
+/* .message-block:hover {
+  background-color: rgb(3, 37, 67);
+  cursor: pointer;
+} */
+
+/* ---------------------------------END-MESSAGE--------------------------------- */
+
+/* -------------------------------------CLICKS------------------------------- */
+/* Удалил и переделал */
+/* -------------------------------------End-CLICKS------------------------------- */
