@@ -7,11 +7,11 @@ export class Notification extends Module {
 
   addNotification(id) {
     const $notificationItem = document.createElement('div');
-    $notificationItem.className = `notification-item ${this.type}-container`;
+    $notificationItem.className = `notification-container-item ${this.type}-container`;
     $notificationItem.id = `${this.type}-${id}`;
 
     const $notificationSpan = document.createElement('span');
-    $notificationSpan.className = `notification-span ${this.type}-span`;
+    $notificationSpan.className = `notification-container-span ${this.type}-span`;
     $notificationSpan.id = `${this.type}-span-${id}`;
     $notificationItem.append($notificationSpan);
 

@@ -1,5 +1,5 @@
 import { Module } from '../core/module';
-import { timer } from '../utils';
+import { timer } from '../utiles/timer';
 import { ModalWindow } from './modal.module';
 import { AudioModule } from './audio.module';
 import { Notification } from './notification.module';

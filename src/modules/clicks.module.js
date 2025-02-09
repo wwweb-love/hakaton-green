@@ -1,48 +1,49 @@
 import { Module } from '../core/module'
-import { ModalClick } from '../utiles/modalClick.module'
-import { ModalInfoClick } from '../utiles/modalClick.module'
-import RemoveNotificationItem from '../utiles/removeNotificationItem'
-
-const modalClick = new ModalClick
-const modalInfoClick = new ModalInfoClick
+import { Notification } from './notification.module'
 
 export class ClicksModule extends Module {
     constructor(type, text) {
         super(type, text),
         this.state = {
             seconds: 0,
-            activate: false
+            activate: false,
+            clicks: 0
+        },
+        this.handleClick = () => {
+            this.state.clicks += 1
         }
     }
 
     trigger() {
+        const notification = new Notification(this.type, this.text)
 
         if (!this.state.activate) {
-            this.state.seconds = 3
+            this.state.seconds = 5
 
             this.state.activate = true
 
             // Открываем модальное окно
-            modalClick.open()
-    
+            const dateNow = Date.now()
+            notification.addNotification(dateNow)
+            document.body.addEventListener('click', this.handleClick)
+            const $clickSpan = document.querySelector(`#${this.type}-span-${dateNow}`)
+
             // Запускаем отсчет времени
-            modalClick.editTime(this.state.seconds)
+            $clickSpan.textContent = `Модуль активирован. Кликайте! ${this.state.seconds}`
+
             let timer = setInterval(() => {
                 if (this.state.seconds > 1) {
-                    modalClick.editTime(this.state.seconds - 1)
+                    $clickSpan.textContent = `Модуль активирован. Кликайте! ${this.state.seconds - 1}`
                     this.state.seconds -= 1
-                } else {
-                    modalClick.removeListenerBody()
-                    modalClick.close()
-                    clearInterval(timer);
-
-                    // Не считаем клик на модуль "Аналитика кликов"
-                    modalClick.countClicks -= 1
-                    modalInfoClick.open(modalClick.countClicks)
-                    modalClick.countClicks = 0
-                    RemoveNotificationItem(modalInfoClick.$clickContainer)
-                    this.state.activate = false
                     
+                } else {
+                    document.body.removeEventListener('click', this.handleClick)
+                    clearInterval(timer);
+                    this.state.clicks -= 1
+                    $clickSpan.textContent = `Количество кликов ${this.state.clicks}`
+                    this.state.clicks = 0
+                    setTimeout(() => notification.removeNotification(dateNow), 10000)
+                    this.state.activate = false
                 }
             }, 1000)
         }
