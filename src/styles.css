@@ -133,7 +133,12 @@ body {
   row-gap: 20px;
 }
 
-.notification-item {
+
+.notification-container-item {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+
   z-index: 3;
   bottom: 25px;
   right: 25px;
@@ -147,25 +152,63 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 20px 0 60px;
-  background-image: url(./img/timer.png);
   background-position: 15px;
   background-size: 10%;
   background-repeat: no-repeat;
 }
-*/ .notification-item:hover {
+
+.notification-container-item:hover {
   color: #fff;
-  background-image: url(./img/timer-white.png);
   background-color: #343434;
 }
-*/ .notification-item:hover .timer-span {
-  color: #fff;
+
+.notification-container-item-remove {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s 1s, opacity 1s linear;
 }
-*/ .notification-span {
+
+.notification-container-span {
   position: relative;
   font-size: 20px;
   z-index: 4;
 }
-*/ .modal-timer {
+
+.timer-container {
+  background-image: url(./img/timer.png);
+}
+.timer-container:hover {
+  background-image: url(./img/timer-white.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.message-container {
+  background-image: url(./img/message.png);
+}
+
+.message-container:hover {
+  background-image: url(./img/message-white.png);
+}
+
+/* End edit */
+
+
+/* ----------------------------------TIMER--------------------------------- */
+
+.modal-timer {
   width: 400px;
   height: auto;
   border-radius: 10px;

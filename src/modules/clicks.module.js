@@ -1,6 +1,7 @@
 import { Module } from '../core/module'
 import { ModalClick } from '../utiles/modalClick.module'
 import { ModalInfoClick } from '../utiles/modalClick.module'
+import RemoveNotificationItem from '../utiles/removeNotificationItem'
 
 const modalClick = new ModalClick
 const modalInfoClick = new ModalInfoClick
@@ -39,7 +40,9 @@ export class ClicksModule extends Module {
                     modalClick.countClicks -= 1
                     modalInfoClick.open(modalClick.countClicks)
                     modalClick.countClicks = 0
+                    RemoveNotificationItem(modalInfoClick.$clickContainer)
                     this.state.activate = false
+                    
                 }
             }, 1000)
         }
