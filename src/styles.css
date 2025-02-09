@@ -163,6 +163,35 @@ body {
   z-index: 4;
 }
 
+.timer-container {
+  background-image: url(./img/timer.png);
+}
+.timer-container:hover {
+  background-image: url(./img/timer-white.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.click-container {
+  background-image: url(./img/cursor.png);
+}
+.click-container:hover {
+  background-image: url(./img/cursor-white.png);
+}
+
+.message-container {
+  background-image: url(./img/message.png);
+}
+
+.message-container:hover {
+  background-image: url(./img/message-white.png);
+}
+
 /* End edit */
 
 
